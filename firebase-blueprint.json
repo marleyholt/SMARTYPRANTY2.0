@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "name", "email"]
+    },
+    "Item": {
+      "title": "Item",
+      "description": "Catalog item and standard classification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "classification": { "type": "string" },
+        "category": { "type": "string" },
+        "defaultUnit": { "type": "string" }
+      },
+      "required": ["id", "userId", "classification"]
+    },
+    "Purchase": {
+      "title": "Purchase",
+      "description": "Processed receipt (NF) data",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "establishment": { "type": "string" },
+        "purchaseDate": { "type": "string" },
+        "csvData": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "establishment", "purchaseDate"]
+    },
+    "PantryItem": {
+      "title": "PantryItem",
+      "description": "Current inventory in pantry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "classification": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "lastUpdated": { "type": "string" }
+      },
+      "required": ["id", "userId", "classification", "quantity"]
+    },
+    "ShoppingList": {
+      "title": "ShoppingList",
+      "description": "Generated shopping list",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "intervalDays": { "type": "number" },
+        "strategy": { "type": "string" },
+        "itemsJson": { "type": "string" },
+        "estimatedCost": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "intervalDays", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/users/{userId}/items/{itemId}": {
+      "schema": "Item",
+      "description": "Catalog and classifications"
+    },
+    "/users/{userId}/purchases/{purchaseId}": {
+      "schema": "Purchase",
+      "description": "Processed receipts (NFs)"
+    },
+    "/users/{userId}/pantry/{pantryId}": {
+      "schema": "PantryItem",
+      "description": "Pantry inventory"
+    },
+    "/users/{userId}/shopping_lists/{listId}": {
+      "schema": "ShoppingList",
+      "description": "Shopping lists"
+    }
+  }
+}

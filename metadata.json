@@ -1,0 +1,6 @@
+{
+  "name": "SmartPantry 2.0",
+  "description": "Gestão inteligente de despensa e compras com IA, notas fiscais, controle de estoque e otimização de preços.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
